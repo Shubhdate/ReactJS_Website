@@ -1,0 +1,1674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReactJS WEBSITE</title>
+</head>
+<body>
+    <center>
+        <h1><b>ReactJS MultiPage Website</b></h1>
+    </center>
+
+    What i will Learn - <br>
+    1)React Installation
+    2)Navbar with the ehlp of React Touter Dom
+    3)Style Components
+    4)index MultiPage
+    5)About Page 
+    6)Use of context hook
+    7)use reducer hook
+    8)fetch data service Page
+    9) contact form 
+    10)error page 
+    11)footer 
+    12)scroll bottom to top
+    13) responsive navbar 
+    14)media queries 
+    15)hostng website for free
+
+    <hr>
+
+    steps - <br>
+
+    step1) we are going to use vite here:
+    npm create vite@latest
+    use React
+    package name - react 
+    javacript 
+    cd reactjswebsite
+    npm install
+    npm run dev
+    in chrome http://127.0.0.1:5173/ 
+    Shortcuts
+    press r to restart the server
+    press u to show server url   
+    press o to open in browser   
+    press q to quit
+    and hence we install react for our website
+    
+    
+    step2) how to run:
+    go to app.jsx and then clear all thing 
+    then type rafce and in that type ==>
+    <!-- import React from 'react'
+
+    const App = () => {
+    return (
+        <div>Welcome to Shubhaaam.com website</div>
+    )
+    }
+
+    export default App -->
+    and after that clear all code in app.css and index.css so that we can design our own website 
+
+
+    step3)making pages:
+    make pages in src folder
+    pages ==> Home.jsx, About.jsx,Contact.jsx,Service.jsx 
+    now making rafce in all our pages 
+    now next step is that we have to link all pages in our app.jsx for that ==>
+    <!-- 
+    import React from 'react';
+    import Home from './Home';
+    import About from './About';
+    import Service from './Service';
+    import Contact from './Contact';
+
+    const App = () => {
+    return (
+        <>
+        <Home/>
+        <About/>
+        <Service/>
+        <Contact/>
+        </>
+    )
+    }
+
+    export default App -->
+    
+    
+    step4)making of navigation react router dom
+    npm i react-router-dom 
+    now we have to connect that in our app.jsx==>
+    by this we can get /About,/Service,/Contact page in our website 
+
+    <!-- import {BrowserRouter, Routes, Route} from 'react-router-dom';
+    const App = () => {
+        return (
+          <>
+            <BrowserRouter>
+              <Routes>
+                <Route path='/' element={<Home/>} />
+                <Route path='/About' element={<About/>} />
+                <Route path='/Service' element={<Service/>} />
+                <Route path='/Contact' element={<Contact/>} />
+              </Routes>
+            </BrowserRouter>
+          </>
+        )
+    }
+    export default App -->
+
+    now making a new folder in src ie components and making pages in Header.jsx, Footer.jsx 
+    making Header, footer and in that we want to use rafce 
+
+    <!-- import Header from './components/Header';
+    import Footer from './components/Footer';
+    <BrowserRouter>
+
+        <Header/>
+
+        <Routes>
+          <Route path='/' element={<Home/>} />
+          <Route path='/About' element={<About/>} />
+          <Route path='/Service' element={<Service/>} />
+          <Route path='/Contact' element={<Contact/>} />
+        </Routes>
+
+        <Footer/> 
+
+    </BrowserRouter>
+    export default App; 
+-->
+
+
+    step5)makng of header now 
+    making of navbar.jsx in components and importing that in Header.jsx
+    <!-- import React from 'react';
+    import { NavLink } from 'react-router-dom';
+
+    const Navbar = () => {
+    return (
+        <div className='menuIcon'>
+            <ul className="navbar-list">
+                <li><NavLink to="/">Home</NavLink></li>
+                <li><NavLink to="/About">About</NavLink></li>
+                <li><NavLink to="/Service">Services</NavLink></li>
+                <li><NavLink to="/Contact">Contact</NavLink></li>
+            </ul>
+        </div>
+    )
+    }
+
+    export default Navbar -->
+
+    <!-- import React from 'react'
+    import { NavLink } from 'react-router-dom';
+    import Navbar from './Navbar';
+
+    const Header = () => {
+    return (
+        <header>
+        <NavLink to="/"> 
+        {/* by using navlink we dont have to refresh page repeatedly */}
+            <img src="#" alt="images"/>
+        </NavLink>
+
+        <Navbar />
+        </header>
+    );
+    };
+
+    export default Header -->
+
+    step6)styling components in navbar==>
+    to install syle componentes and it is alternative of css 
+    npm i styled-components
+    making one property and using it in every page is called ThemeProvider andf making theme components so that we can use that everywhere
+    <!-- import { ThemeProvider } from "styled-components";
+
+    const App = () => {
+    const theme={
+        colors:{
+        heading:"rgb(24 24 29)",
+        text:"rgb(24 24 29)",
+        white:"#fff",
+        black:"#212529",
+        helper:"#8490ff",
+        bg:"rgb(249 249 255)",
+        footer_bg:"#0a1435",
+        btn:"rgb(98 84 243)",
+        border: "rgba(98,84,243,0.5)",
+        hr:"#ffffff",
+        gradient:
+        "linear-gradient(0deg,rgb(132 144 255) 0%, rgb(98 189 252) 100%)",
+        shadow:"rgba(0,0,0,0.02) 0px 1px 3px 0px, rgba(27, 31 35, 0.15) 0px 0px 0px 1px;",
+        shadowSupport:"rgba(0,0,0,0.16) 0px 1px 4px",
+        },
+        media:{
+        mobile:"768px",
+        tab:"998px"
+        },
+    }
+
+    return (
+
+        <ThemeProvider theme={theme}>
+        
+        <BrowserRouter>
+
+            <Header/>
+
+            <Routes>
+            <Route path='/' element={<Home/>} />
+            <Route path='/About' element={<About/>} />
+            <Route path='/Service' element={<Service/>} />
+            <Route path='/Contact' element={<Contact/>} />
+            </Routes>
+
+            <Footer/> 
+
+        </BrowserRouter>
+
+        </ThemeProvider>
+        
+    )
+    } -->
+
+    now makming globalstyle.jsx in src folder so that we can use css everywhere and access it
+    <!-- import { createGlobalStyle } from "styled-components";
+
+    export const GlobalStyle = createGlobalStyle`
+
+    *{
+        margin:0;
+        padding:0;
+        box-sizzing:border-box;
+        font-family: 'Patrick Hand', cursive;
+
+    }
+
+    html{
+        font-size:62.5%;
+        overflow-x:hidden;
+    }
+
+    h1{
+        font-size:6rem;
+        font-weight:900;
+        color: ${({theme})=>theme.colors.heading};
+        // by this we can get our colors property of css 
+    }
+
+    h2{
+        font-size:4.5rem;
+        font-weight:400;
+        color: ${({theme})=>theme.colors.heading};
+        // by this we can get our colors property of css 
+        white-space:normal;
+        text-align:center;
+    }
+
+    h2{
+        font-size:2rem;
+        font-weight:300;
+    }
+
+    p{
+        font-size:1.5rem;
+        font-weight:400;
+        color: ${({theme})=>theme.colors.text};
+        opacity: 0.7;
+        line-height:1.5;
+    }
+
+    a{
+        text-decoration:none;
+    }
+
+    li{
+        list-style:none;
+    }
+
+    `; -->
+
+    now importing that in our header.jsx file 
+    <!-- import React from 'react'
+    import { NavLink } from 'react-router-dom';
+    import Navbar from './Navbar';
+    import styled from 'styled-components';
+
+    const Header = () => {
+    const MainHeader = styled.header`
+        padding: 0 5rem;
+        height:10rem;
+        background-color: ${({theme}) => theme.colors.bg};
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+
+        .logo{
+        height: auto;
+        max-width:30%
+        }
+    `;
+    
+    return (
+        <MainHeader>
+        <NavLink to="/"> 
+        {/* by using navlink we dont have to refresh page repeatedly */}
+            <img src="#" alt="images" className='logo'/>
+        </NavLink>
+
+        <Navbar />
+        </MainHeader>
+    );
+    };
+
+    export default Header -->
+
+    now importing that header in our navbar.jsx 
+    <!-- import React from 'react';
+    import { NavLink } from 'react-router-dom';
+    import styled from 'styled-components';
+
+    const Navbar = () => {
+    const Nav = styled.nav`
+        .navbar-list{
+        display:flex;
+        gap: 5rem;
+
+        a{
+            text-decoration:none;
+        }
+
+        li{
+            list-style:none;
+
+            .navbar-link{
+
+            &:link,
+            &:visited{
+                display:inline-block;
+                text-decoration:none;
+                font-size:2.2rem;
+                text-transform:uppercase;
+                color: ${({theme}) => theme.colors.black};
+                transition: color 0.2s linear;
+            }
+
+            &:hover,
+            &:active{
+                color: ${({theme}) => theme.colors.helper};
+            }
+            }
+        }
+        }
+    `;
+
+    return (
+        <Nav>
+        <div className='menuIcon'>
+            <ul className="navbar-list">
+                <li><NavLink className="navbar-link" to="/">Home</NavLink></li>
+                <li><NavLink className="navbar-link" to="/About">About</NavLink></li>
+                <li><NavLink className="navbar-link" to="/Service">Services</NavLink></li>
+                <li><NavLink className="navbar-link" to="/Contact">Contact</NavLink></li>
+            </ul>
+        </div>
+        </Nav>
+    )
+    }
+    export default Navbar
+ -->
+
+    now using that navbar.jsx globalstyle in our app.jsx 
+    <!-- import { ThemeProvider } from "styled-components";
+    import { GlobalStyle } from './GlobalStyle';
+
+    const App = () => {
+
+    const theme ={
+        colors:{
+        heading:"rgb(24 24 29)",
+        text:"rgb(24 24 29)",
+        white:"#fff",
+        black:"#212529",
+        helper:"#8490ff",
+        bg:"rgb(249 249 255)",
+        footer_bg:"#0a1435",
+        btn:"rgb(98 84 243)",
+        border: "rgba(98,84,243,0.5)",
+        hr:"#ffffff",
+        gradient:
+        "linear-gradient(0deg,rgb(132 144 255) 0%, rgb(98 189 252) 100%)",
+        shadow:"rgba(0,0,0,0.02) 0px 1px 3px 0px, rgba(27, 31 35, 0.15) 0px 0px 0px 1px;",
+        shadowSupport:"rgba(0,0,0,0.16) 0px 1px 4px",
+        },
+        media:{
+        mobile:"768px",
+        tab:"998px"
+        },
+    }
+
+    return (
+
+        <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <BrowserRouter>
+
+            <Header/>
+
+            <Routes>
+            <Route path='/' element={<Home/>} />
+            <Route path='/About' element={<About/>} />
+            <Route path='/Service' element={<Service/>} />
+            <Route path='/Contact' element={<Contact/>} />
+            </Routes>
+
+            <Footer/> 
+
+        </BrowserRouter>
+
+        </ThemeProvider>
+        
+    )
+    }
+
+    export default App;
+ -->
+
+
+    step8)making of herosection ie home section ==>
+    making something that we can use same piece of code in home.jsx and also in about.jsx 
+
+    making of herosection.jsx 
+    <!-- import React from 'react'
+    import { NavLink } from 'react-router-dom';
+    import styled from 'styled-components';
+    import { Button } from '../styles/Button';
+
+    const HeroSectiuon = () => {
+        const Wrapper = styled.section`
+            padding: 10rem 0;
+
+            .section-hero-data{
+                display-flex;
+                flex-direction:column;
+                justify-content:center;
+            }
+
+            .btn{
+                max-width:15rem;
+            }
+
+            .hero-top-data{
+                text-transform:uppercase;
+                font-weight:500;
+                font-size:1.5rem;
+                color:${({theme}) => theme.colors.helper};
+            }
+
+            .hero-heading{
+                font-size:6.5rem;
+            }
+
+            .hero-para{
+                margin-top:1.5rem;
+                margin-bottom:3rem;
+                max-width:60rem;
+            }
+
+            .section-hero-image{
+                display:flex;
+                justify-content:center;
+                align-items:center;
+            }
+
+            picture{
+                text-align:center;
+            }
+
+            .hero-img{
+                max-width: 80%;
+            }
+        `;
+
+    return (
+        <Wrapper>
+            <div className="container grid grid-two-columns">
+
+                <div className="section-hero-data">
+                    <p className='hero-top-data'>THIS IS ME</p>
+                    <h1 className='hero-heading'>Shubhaaam.com</h1>
+                    <p className='hero-para'>I'm Shubham Date. A Full stack Developer and Freelancer.</p>
+
+                    <Button className="btn hireme-btn">
+                        <NavLink to="/Contact">Hire Me</NavLink>
+                    </Button>
+                </div>
+
+
+                <div className="section-hero-images">
+                    <picture>
+                        <img src='./images/hero.svg' alt="home"  className='hero-img'/>
+                    </picture>
+                </div>
+            </div>
+        </Wrapper>
+    )
+    }
+
+    export default HeroSectiuon
+ -->
+
+    making of button.jsx in componentes
+    <!-- import styled from "styled-components";
+
+    export const Button = styled.button`
+        text-decoration:none;
+        max-width:auto;
+        background-color:rgb(98 84 243);
+        color:rgb(255 255 255);
+        padding: 1.4rem 2.5rem;
+        border:none;
+        text-transform: uppercase;
+        text-align:center;
+        cursor:pointer;
+        transition:all 0.3s ease;
+        --webkit-transitions:all 0.3s ease;
+        --moz-transitions:all 0.3s ease;
+        -o-transitions:all 0.3s ease;
+
+
+        &:hover,
+        &:active{
+            box-shadow:0 2remm 2rem 0 rgb(132 144 255 / 30%);
+            box-shadow:${({theme}) => theme.colors.shadowSupport};
+            transform: scale(0.9);
+        }
+
+        a{
+            text-decoration:none;
+            color: rgb(255 255 255);
+            font-size: 2rem;
+        }
+
+    `; -->
+
+    making of GlobalStyle.jsx 
+    <!-- import { createGlobalStyle } from "styled-components";
+
+    export const GlobalStyle = createGlobalStyle`
+        .container{
+            max-width:120rem;
+            margin: 0 auto;
+        }
+        
+        .grid{
+            display:grid;
+            gap:9rem;
+        }
+        
+        .grid-two-columns{
+            grid-template-columns: repeat(2,1fr);
+        }
+        
+        .grid-three-columns{
+            grid-template-columns: repeat(3,1fr);
+        }
+        
+        .grid-four-columns{
+            grid-template-columns: 1fr 1.2fr 0.5fr 0.8fr;
+        }
+    `; -->
+
+
+    importing of herosection.jsx in home.jsx 
+    <!-- import React from 'react'
+    import HeroSectiuon from './components/HeroSectiuon'
+
+    const Home = () => {
+    return (
+        <HeroSectiuon/>
+    )
+    }
+
+    export default Home -->
+
+
+    step9)making of about page==>
+    here we will use props state, useState hook, state management 
+    by with this we have to write code one time but by changing data and images inside it we can use that in multiple pages 
+
+    by using props we can do that
+    from herosection.jsx
+
+    <!-- 
+        const HeroSectiuon = (props) => {
+
+
+
+        <div className="section-hero-data">
+        <p className='hero-top-data'>THIS IS ME</p>
+        <h1 className='hero-heading'>{props.name}</h1>
+        <p className='hero-para'>I'm Shubham Date. A Full stack Developer and Freelancer.</p>
+
+        <Button className="btn hireme-btn">
+            <NavLink to="/Contact">Hire Me</NavLink>
+        </Button>
+    </div>
+
+
+    <div className="section-hero-images">
+        <picture>
+            <img src={props.image} alt="home"  className='hero-img'/>
+        </picture> -->
+
+    and now we have to use that props in our about.jsx and home.jsx page
+    <!-- import React from 'react'
+    import HeroSectiuon from './components/HeroSectiuon'
+
+    const Home = () => {
+
+    const data = {
+        name:"Shubhaaam.com",
+        image:"./images/hero.svg",
+    };
+
+    return (
+        <HeroSectiuon {...data}/>
+    )
+    } -->
+
+
+    <!-- import React from 'react'
+    import HeroSectiuon from './components/HeroSectiuon'
+
+    const About = () => {
+    const data = {
+        name:"Shubham Date",
+        image: "./image/about1.svg",
+    };
+    return (
+        <HeroSectiuon {...data}/>
+    )
+    }
+
+    export default About -->
+
+    since we dont want to use words props everytime we have to destructured it in herosectiomn.jsx 
+    <!-- const HeroSectiuon = ({name,image}) => {
+
+    <h1 className='hero-heading'>{name}</h1>
+
+    <img src={image} alt="home"  className='hero-img'/> -->
+
+
+    step10) we age going to use context API and useContext hook ==>
+    if we dont wanna use so much of props which is called as props dirilling we are going to use useContext hook
+
+    how we can create :
+    first make 2 files in src folder ie Context.jsx and Reducer.jsx
+    now with the help of that we have 3 rules:
+    create a context(warehouse)
+    a provider 
+    a consumer(useContext hook)
+    means make a data if consumer needs that data made a call with provider 
+
+    from context.jsx 
+    <!-- import React from "react";
+
+    const AppContext = React.createContext();// warehouse
+    const AppProvider = ({children}) =>{
+        return <AppContext.Provider value="Shubham Date">{children}</AppContext.Provider>;
+    };//provider
+
+    export {AppContext,AppProvider}; -->
+
+    from reducer.jsx 
+    <!-- nothing -->
+
+    from main.jsx which is in src folder
+    <!-- import { AppProvider } from './Context'
+
+    ReactDOM.createRoot(document.getElementById('root')).render(
+    <AppProvider>
+        <React.StrictMode>
+        <App />
+        </React.StrictMode>
+    </AppProvider>
+    ) -->
+
+
+    and where we have to make changes ie from herosection.jsx 
+    
+    <!-- import { AppContext } from '../Context';
+    import { useContext } from 'react';
+
+    const HeroSectiuon = ({name,image}) => {
+
+        const userName = useContext(AppContext);
+
+        <p className='hero-para'>I'm {userName}. A Full stack Developer and Freelancer.</p> -->
+    
+
+    since we have to write this much code we can make our own hook so that it will become easy for us 
+    from context.jsx 
+    <!-- import React, { useContext } from "react";
+    const useGlobalContext = () => {
+        return useContext(AppContext);
+    }
+    
+    export {AppContext,AppProvider, useGlobalContext}; -->
+
+    main.jsx will remain same 
+    
+    from herosection.jsx  we have to 
+    <!-- import { useGlobalContext } from '../Context';
+    const HeroSectiuon = ({name,image}) => {
+
+        const userName = useGlobalContext();
+
+    <p className='hero-para'>I'm {userName}. A Full stack Developer and Freelancer.</p> -->
+
+
+
+    step11) state management and we will see useReducer() hook 
+    making changes with the help of conetxt.jsx so to avoid props 
+
+    FROM CONTEXT.JSX 
+    <!-- import React, { useContext, useReducer } from "react";
+    import Reducer from "./Reducer" ;
+    
+    const AppContext = React.createContext();// warehouse
+    const intialState = {
+        name:"",
+        image: "",
+    };
+    
+    
+    const AppProvider = ({children}) =>{
+    
+        const [state, dispatch] = useReducer(Reducer, intialState);
+    
+        const updateHomePage = () => {
+            return dispatch(
+                {
+                    type: "HOME_UPDATE",
+                    payload:{
+                        name:"Shubhaaam.com",
+                        image: "./images/hero.svg",
+                    }
+                }
+            )
+        }
+        
+        const updateAboutPage = () => {
+            return dispatch(
+                {
+                    type: "ABOUT_UPDATE",
+                    payload:{
+                        name:"Shubham Date",
+                        image: "./images/about1.svg",
+                    }
+                }
+            )
+        }
+    
+        return <AppContext.Provider value={{...state, updateHomePage,updateAboutPage}}>{children}</AppContext.Provider>;
+    };//provider
+    
+    const useGlobalContext = () => {
+        return useContext(AppContext);
+    }
+    
+    export {AppContext,AppProvider, useGlobalContext}; -->
+
+
+    FROM REDUCER.JSX 
+    <!-- const Reducer = (state, action) => {
+        if(action.type === "HOME_UPDATE" ){
+            return {
+                ... state,
+                name:action.payload.name,
+                image: action.payload.image,
+            };
+        }
+    
+        if(action.type === "ABOUT_UPDATE" ){
+            return {
+                ... state,
+                name: action.payload.name,
+                image: action.payload.image,
+            };
+        }
+        return state;
+    }
+    
+    export default Reducer; -->
+
+    from herosection.jsx 
+    <!-- import { useGlobalContext } from '../Context';
+
+    const HeroSectiuon = () => {
+
+        const {name, image} = useGlobalContext();
+
+        <p className='hero-para'>I'm {name}. A Full stack Developer and Freelancer.</p>
+
+        <h1 className='hero-heading'>{name}</h1>
+        <img src={image} alt="home"  className='hero-img'/> -->
+
+    from home.jsx 
+        
+    <!-- import { useGlobalContext } from './Context'
+    import { useEffect } from 'react'
+
+    const Home = () => {
+      
+        const {updateHomePage} = useGlobalContext();
+        useEffect(() => updateHomePage(), []);
+        
+      
+        return (
+          // <HeroSectiuon {...data}/>
+          <HeroSectiuon/>
+        )
+      }
+     -->
+
+    FROM ABOUT.JSX 
+    <!-- import { useEffect } from 'react';
+    import { useGlobalContext } from './Context'
+
+    const About = () => {
+    const {updateAboutPage} = useGlobalContext();
+    useEffect(() => updateAboutPage(), []);
+
+    return (
+        // <HeroSectiuon {...data}/>
+        <HeroSectiuon/>
+    )
+    }
+
+    export default About -->
+
+
+    main.jsx file will remain same
+    <!-- import { AppProvider } from './Context'
+
+    ReactDOM.createRoot(document.getElementById('root')).render(
+    <AppProvider>
+        <React.StrictMode>
+        <App />
+        </React.StrictMode>
+    </AppProvider>
+    )
+     -->
+
+
+    step12) call of api and render api and using it in our service section ==>
+    here we can use the same data anytime we nedded in our different pages so that it will become easy with the help of API
+    to call api:
+    useeffect
+
+
+    first i have to make my own api 
+    i cant make right now but i will watch 
+    but if i had api the this will be code 
+    from context.jsx 
+    <!-- import React, { useContext, useReducer } from "react";
+    import { useEffect } from "react";
+    import Reducer from "./Reducer" ;
+
+    const AppContext = React.createContext();// warehouse
+    const intialState = {
+        services: [],
+    };
+
+    // i hav to make  mine one
+    const API = "https://thapareactapi.up.railway.app";
+
+    const AppProvider = ({children}) =>{
+
+        const [state, dispatch] = useReducer(Reducer, intialState);
+
+        //to get api data
+        const getServices = async(url) =>{
+            try {
+                const res = await fetch(url);
+                const data = await res.json();
+                dispatch({type: "GET_SERVICES", payload:data});
+
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        useEffect(()=>{
+            getServices(API);
+        }, []);
+
+        return <AppContext.Provider value={{...state, updateHomePage,updateAboutPage}}>{children}</AppContext.Provider>;
+    };//provider
+
+    const useGlobalContext = () => {
+        return useContext(AppContext);
+    }
+
+    export {AppContext,AppProvider, useGlobalContext};
+ -->
+
+    from reducer.jsx 
+    <!-- const Reducer = (state, action) => {
+    
+        if(action.type === "GET_SERVICES" ){
+            return {
+                ... state,
+                services: action.payload,
+            };
+        }
+        return state;
+    }
+    
+    export default Reducer; -->
+
+    from GlobalStyle.jsx 
+    <!-- import { createGlobalStyle } from "styled-components";
+
+    export const GlobalStyle = createGlobalStyle`
+
+
+    .common-heading{
+        font-size:3.8rem;
+        font-weight:600;
+        margin-bottom:6rem;
+        text-transform:capitalize;
+    } 
+`;    -->
+
+    from service.jsx 
+    <!-- import React from 'react'
+    import { useGlobalContext } from './Context'
+    import styled from "styled-components";
+    import {NavLink} from "react-router-dom";
+    import {Button} from "./styles/Button";
+
+    const Service = () => {
+    
+    const {services} = useGlobalContext();
+    console.log(services);
+
+    return (
+        <Wrapper className="section">
+        <h2 className='common-heading'>Our Services</h2>
+        <div className='container grid grid-three-columns'>
+            {
+            services.map((currentElement) => {
+                const {id,name, image, description} = currentElement;
+                return(
+                    <div key={id} className='card'>
+                    <figure>
+                        <img src={image} alt="cards" srcset="" />
+                    </figure>
+
+                    <div className='card-data'>
+                        <h3>{name}</h3>
+                        <p>{description}</p>
+                        <NavLink to="/Service">
+                            <Button className="btn">Read More</Button>
+                        </NavLink>
+                    </div>
+                    </div>
+
+                )
+            })
+            }
+        </div>
+        </Wrapper>
+    )
+    }
+
+    const Wrapper = styled.section`
+    padding: 9rem 0;
+    background-color: ${({theme}) => theme.colors.bg};
+
+    .container{
+        max-width:120rem;
+    }
+
+    figure{
+        width:auto;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        position:relative;
+        overflow:hidden;
+        transition: all 0.5s linear;
+
+        &::after{
+        content: "";
+        top:0;
+        left:0;
+        width:0%;
+        height:100%;
+        background-color:rgba(0,0,0,0.5);
+        transition: all 0.2s linear;
+        cursor:pointer;
+        }
+
+        &:hover::after{
+        width:100%;
+        }
+
+        &:hover img{
+        transform:scale(1.2);
+        }
+
+        img{
+        max-width:90%;
+        margin-top:1.5rem;
+        height:20rem;
+        transition:all 0.2s linear;
+        }
+
+        h3{
+        margin: 2rem 0;
+        font-weight: 300;
+        font-size:2.5rem;
+        }
+
+        .btn{
+        margin: 2rem auto;
+        background-color:rgb(0 0 0 / 0%);
+        border: 0.1rem solid rgb(98 84 243);
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        color:rgb(98 84 243);
+        font-size:1.5rem;
+        }
+
+        &hover{
+        background-color:rgb(98 84 243);
+        color: #fff;
+        }
+
+        .card{
+        border:0.1rem solid rgb(170 170 170 / 40%);
+
+        .card-data{
+            padding: 0 2rem;
+        }
+        }
+    }
+    `;
+
+    export default Service
+ -->
+ 
+
+    step13)contact formm with free wmail - 
+    by filling this form we willl get data at our gmail 
+
+    first i have to make an accounbt at formspree so that we can get our data at our email 
+    next i have to make contact form.jsx 
+    <!-- import React from 'react'
+    import styled from "styled-components";
+
+    const Contact = () => {
+    const Wrapper = styled.section`
+    padding: 9rem 0 5rem 0;
+    
+    .container{
+        margin-top:6rem;
+        text-align:center;
+    }
+
+    .contact-form{
+        max-width:50rem;
+        margin:auto;
+
+        .contact-inputs{
+        display:flex;
+        flex-direction:column;
+        gap:3rem;
+        }
+
+        input[type="submit"]{
+        cursor:pointer;
+        transition:all 0.2s;
+        }
+        input[type="submit"]:hover{
+        background-color:${({theme})=>theme.colors.white};
+        border:1px solid ${({theme})=>theme.colors.btn};
+        color:${({theme})=>theme.colors.btn};
+        transform: scale(0.9);
+        }
+    }
+
+
+    
+    `;
+
+
+    return (
+        <Wrapper>
+        <h2 className='common-heading'>Contact Us</h2>
+
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20522.57730278305!2d73.31773314110582!3d19.204719698967676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be78d6d8cc5e3d3%3A0x94145934b87536e0!2sJanai%20Farms!5e1!3m2!1sen!2sin!4v1671949765549!5m2!1sen!2sin" width="100%" height="450" style={{border:0}} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+        <div className="container">
+            <div className="contact-form">
+            <form className='contact-inputs' action="https://formspree.io/f/mwkjeabv" method='POST'>
+                <input type="text" name="Username" id="" placeholder='Username' autoComplete='off' required/>
+                <input type="email" name="email" id="" placeholder='Email' autoComplete='off' required/>
+                <textarea name='message' cols="30" rows="6" autoComplete='off' required></textarea>
+                <input type="submit" value="send" />
+            </form>
+            </div>
+        </div>
+
+        </Wrapper>
+    )
+    }
+
+    export default Contact
+ -->
+
+ then globalstyle.jsx 
+ <!-- import { createGlobalStyle } from "styled-components";
+
+export const GlobalStyle = createGlobalStyle`
+
+
+    input, textarea{
+        max-width:50rem;
+        color:${({theme})=>theme.colors.black};
+        padding: 1.6rem 2.5rem;
+        border:1px solid ${({theme})=>theme.colors.border};
+        box-shadow:${({theme})=>theme.colors.shadowSupport};
+        font-size:2rem;
+    }
+
+    input[type="submit"]{
+        max-width:16rem;
+        margin-top:2rem;
+        background-color:${({theme})=>theme.colors.btn};
+        color:${({theme})=>theme.colors.white};
+        padding:1.4rem 2.2rem
+        border-style: solid;
+        border-width:0.1rem;
+        text-transform:uppercase;
+        font-size:1.8rem;
+        cursor:pointer;
+    }
+
+`; -->
+
+    
+step14) making of an create 404 error page - 
+this is to make if someone type wrong url he will get 404 errorpage 
+
+    from app.jsx 
+    <!-- 
+        
+        import Error from './Error';
+        
+        <Routes>
+        <Route path='/' element={<Home/>} />
+        <Route path='/About' element={<About/>} />
+        <Route path='/Service' element={<Service/>} />
+        <Route path='/Contact' element={<Contact/>} />
+        
+        <Route path='*' element={<Error/>} />
+      </Routes> -->
+
+    from error.jsx 
+    <!-- import React from 'react'
+    import styled from 'styled-components';
+    import { Button } from './styles/Button';
+    import { NavLink } from 'react-router-dom';
+
+    const Error = () => {
+
+        const Wrapper = styled.section`
+        padding: 9rem 0;
+        display:flex;
+        align-items:center;
+        flex-direction:column;
+
+        .btn{
+            margin-top:3rem;
+            font-size:2rem;
+        }
+        `;
+
+    return (
+        <Wrapper>
+            <img src='../images/error.svg' alt="error" />
+
+            <NavLink to="/">
+            <Button className='btn'>Go Back</Button>
+            </NavLink>
+        </Wrapper>
+    )
+    }
+
+    export default Error
+ -->
+
+    step15) making of footer div and completely ui - making of footer section and using it everywhere 
+    from footer.jsx 
+    since we have already imported that to all our pages we dont required to import that thing
+    <!-- import React from 'react'
+    import styled from 'styled-components';
+    import { NavLink } from 'react-router-dom';
+    import { Button } from '../styles/Button';
+    import {FaDiscord} from "react-icons/fa";
+    import {FaInstagram} from "react-icons/fa";
+    import {FaFacebook} from "react-icons/fa";
+
+    const Footer = () => {
+    const Wrapper = styled.section`
+
+    .contact-short{
+        max-width:60vw;
+        margin:auto;
+        padding:5rem 10rem;
+        background-color:${({theme})=>theme.colors.bg};
+        border-radius:1rem;
+        box-shadow:${({theme})=>theme.colors.shadowSupport};
+        transform: translateY(50%);
+
+        .grid div;last-child{
+        justify-self:end;
+        align-self:center;
+        }
+    }
+
+    footer{
+        padding:14rem 0 9rem 0;
+        background-color:${({theme})=>theme.colors.footer_bg};
+
+        h3{
+        color:${({theme})=>theme.colors.hr};
+        }
+
+        p{
+        color:${({theme})=>theme.colors.white};
+        }
+
+        .footer-social--icons{
+        display:flex;
+        gap:2rem;
+
+        div{
+            padding:1rem:
+            border:2px solid ${({theme})=>theme.colors.white};
+
+            .icons{
+            color:${({theme})=>theme.colors.white};
+            position:relative;
+            cursor:pointer;
+            font-size:3rem;
+            border-radius:50%;
+            }
+        }
+        }
+
+        .footer-bottom--section{
+        padding-top:9rem;
+
+        hr{
+            margin-bottom:2rem;
+            color:${({theme})=>theme.colors.hr};
+            height:0.2px;
+        }
+        }
+
+    }
+
+    `;
+    return (
+        <Wrapper>
+        <section className="contact-short">
+            <div className='grid grid-two-columns'>
+            <div>
+                <h3>Ready To Get Started?</h3>
+                <h3>Talk to us Today</h3>
+            </div>
+
+            <div>
+                <NavLink to="/Contact">
+                <Button>Get Started</Button>
+                </NavLink>
+            </div>
+            </div>
+        </section>
+
+        <footer>
+            <div className="container grid grid-four-columns">
+            <div className="footer-about">
+                <h3>Shubhaaam.com</h3>
+                <p>Get Your Website From Us at a Cheap Cost , Huppry Up Now</p>
+            </div>
+
+            <div className="footer-subscribe">
+                <h3>Subscribe to get imortant updates</h3>
+                <form action="">
+                <input type="email" placeholder='Email' name="" id="" required autoComplete='off'/>
+                <input type="submit" value="Subscribe" />
+                </form>
+            </div>
+
+            <div className="footer-social">
+                <h3>Follow Us</h3>
+                <div className="footer-social--icons">
+                <div><a href="#"><FaDiscord className='icons'/></a></div>
+                <div><a href="#"><FaInstagram className='icons'/></a></div>
+                <div><a href="#"><FaFacebook className='icons'/></a></div>
+                </div>
+            </div>
+
+            <div className="footer-contact">
+                <h3>Call Us</h3>
+                <h3>+91 0987654321</h3>
+            </div>
+
+            </div>
+
+            <div className="footer-bottom--section">
+            <hr />
+            <div className="container grid grid-two-columns">
+                <p>@{new Date().getFullYear()} Shubhaaam.com . All Rights Reserved</p>
+                <div>
+                <p>PRIVACY POLICY</p>
+                <p>TERMS & CONDITIONS</p>
+                </div>
+            </div>
+            </div>
+        </footer>
+
+        </Wrapper>
+    )
+    }
+
+    export default Footer
+ -->
+
+
+    step16)mkaing our main page - ie it contains all pages in one page 
+    and also creating our custom scrollbar 
+
+
+    from globalstyle.jsx 
+    <!-- ::-webkit-scrollbar{
+        width:1.5rem;
+    }
+
+    ::-webkit-scrollbar-thumb{
+        background:#fff;
+        border:5px solid transparent;
+        border-radius:10px;
+        background-clip:content-box;
+    }
+
+    ::-webkit-scrollbar-track{
+        background-color:rgb(24 24 29);
+    } -->
+    
+
+    from Home.jsx 
+    
+    <!-- import Service from './Service'
+    import Contact from './Contact'
+    return (
+        <>
+        {/* // <HeroSectiuon {...data}/> */ }
+        <HeroSectiuon/>
+        <Service />
+        <Contact/>
+        </>
+    ) -->
+
+
+    step17)Bottom to Top Button - for going up 
+    from GoToTop.jsx in components folder 
+    <!-- import React, { useEffect, useState } from 'react'
+    import styled from 'styled-components';
+    import {FaArrowUp} from "react-icons/fa"
+
+    const GoToTop = () => {
+        const[isVisible, setIsVisible] = useState(false);
+        const goToBtn = () => {
+            window.scrollTo({top:0, left:0,behavior:'smooth'});
+        };
+
+        const listenToScroll = () =>{
+            let heightToHidden = 250;
+            const winScroll = 
+            document.body.scrollTop || document.documentElement.scrollTop;
+
+            if(winScroll > heightToHidden){
+                setIsVisible(true);
+            }
+            else{
+                setIsVisible(false);
+            }
+        }
+
+        useEffect(() => {
+            window.addEventListener("scroll", listenToScroll);
+            return() => window.removeEventListener("scroll", listenToScroll);
+        }, []);
+
+        const Wrapper = styled.section`
+            display:flex;
+            justify-content:center;
+            align-items:center;
+
+            .top-btn{
+                font-size:2.5rem;
+                width:6rem;
+                height:6rem;
+                color:#fff;
+                background-color:${({theme})=>theme.colors.btn};
+                box-shadow :${({theme})=>theme.colors.shadow};
+                border-radius:50%;
+                position:fixed;
+                bottom:5rem;
+                right:5rem;
+                z-index:999;
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                cursor:pointer;
+
+                &--icon{
+                    animation:gototop 1.2s linear infinite alternate-reverse;
+                }
+
+                @keyframes gototop{
+                    0%{
+                        transform:translateY(-0.5rem);
+                    }
+                    100%{
+                        transform:translateY(0.5rem);
+                    }
+                }
+            }
+        `;
+
+    return (
+        <Wrapper>
+            {isVisible && (
+                <div className="top-btn" onClick={goToBtn}>
+                    <FaArrowUp className="top-btn--icon"/>
+                </div>
+            )}
+        </Wrapper>
+    )
+    }
+
+    export default GoToTop
+ -->
+
+    from app.jsx 
+    
+    <!-- import GoToTop from './components/GoToTop';
+
+    <Footer/> 
+    <GoToTop/> -->
+
+
+
+
+
+    step 18)making responsive navbar for mobile and tab  -
+    from navbar.jsx 
+    <!-- import React, { useState } from 'react';
+    import { NavLink } from 'react-router-dom';
+    import styled from 'styled-components';
+    import {CgMenu, CgCloseR} from "react-icons/cg";
+
+    const Navbar = () => {
+
+    const [openMenu, setOpenMenu] = useState(false);
+
+    const Nav = styled.nav`
+        .navbar-list{
+        display:flex;
+        gap: 5rem;
+
+        a{
+            text-decoration:none;
+        }
+
+        li{
+            list-style:none;
+
+            .navbar-link{
+
+            &:link,
+            &:visited{
+                display:inline-block;
+                text-decoration:none;
+                font-size:2.2rem;
+                text-transform:uppercase;
+                color: ${({theme}) => theme.colors.black};
+                transition: color 0.2s linear;
+            }
+
+            &:hover,
+            &:active{
+                color: ${({theme}) => theme.colors.helper};
+            }
+            }
+        }
+        }
+
+        .mobile-navbar-btn{
+        display:none;
+
+        .close-outline{
+            display:none;
+        }
+        }
+
+        .mobile-navbar-btn[name="close-outline"]{
+        display:none;
+        }
+
+
+
+        @media (max-width: ${({theme}) => theme.media.mobile}){
+        .mobile-navbar-btn{
+            display:inline-block;
+            z-index:999;
+            border:${({theme}) => theme.colors.black};
+
+            .mobile-nav-icon{
+            font-size: 4.2rem;
+            color:${({theme}) => theme.colors.black});
+            }
+        }
+
+        .navbar-list{
+            width:100vw;
+            height:100vh;
+            position:absolute;
+            top:0;
+            left:0;
+            background-color:#fff;
+            transform: translateX(100%);
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            flex-direction:column;
+            text-align:center;
+            visiblity: hidden;
+            opacity:0;
+
+            li{
+            .navbar-link{
+
+                &:link,
+                &:visited{
+                font-size:3.8rem;
+                }
+    
+                &:hover,
+                &:active{
+                color: ${({theme}) => theme.colors.helper};
+                }
+            }
+            }
+        }
+
+        .active .mobile-nav-icon{
+            display:none;
+            font-size:4.2rem;
+            position:absolute;
+            top:3%;
+            right:5%
+            color: ${({theme}) => theme.colors.black};
+            z-index:9999;
+        }
+    
+        .active .close-outline{
+            display:inline-block;
+        }
+    
+        .active .navbar-list{
+            visiblity: visible;
+            opacity:1;
+            transform:translateX(0%);
+            z-index:999;
+        }
+
+        }
+    `;
+
+    return (
+        <Nav>
+        <div className={openMenu ? 'menuIcon active' : "menuIcon"}>
+            <ul className="navbar-list">
+                <li><NavLink  onClick={() => setOpenMenu(false)} className="navbar-link" to="/">Home</NavLink></li>
+                <li><NavLink  onClick={() => setOpenMenu(false)} className="navbar-link" to="/About">About</NavLink></li>
+                <li><NavLink  onClick={() => setOpenMenu(false)} className="navbar-link" to="/Service">Services</NavLink></li>
+                <li><NavLink  onClick={() => setOpenMenu(false)} className="navbar-link" to="/Contact">Contact</NavLink></li>
+            </ul>
+
+            <div className="mobile-navbar-btn">
+                <CgMenu name="menu-outline" className='mobile-nav-icon' onClick={() => setOpenMenu(true)}/>
+                <CgCloseR className='close-outline mobile-nav-icon' name="close-outline" onClick={() => setOpenMenu(false)}/>
+            </div>
+        </div>
+        </Nav>
+    )
+    }
+
+    export default Navbar  -->
+
+    step18) media wueries  making website responsives - 
+    JUST CHECK AND MAKE CHANGES ACCORDING TO OUR NEED 
+
+    step19) hosting our website for free 
+    we created this website with vite not by npx-create-app
+    
+    steps:
+    npm run build 
+    first make netlify login 
+    next step is npm install -g netlify-cli 
+    ntl init 
+    then choose team name 
+    then choose site name 
+    then ntl deploy
+    then type dist 
+    then netlify deploy --prod 
+    then once agin dist
+
+    
+
+    https://shubhaaam.netlify.app - this is my website
+
+
+
+
+
+    
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
